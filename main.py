@@ -16,7 +16,25 @@ class dataHolder:
     def getValue(self):
         for key in self.data:
             if key[0] == self.name:
-                return key[1]
+                z = key[1]
+
+        try:
+            final = int(z)
+        except:
+            try:
+                final = float(z)
+            except:
+                final = z
+                try:
+                    final = bool(final)
+                except:
+                    try:
+                        final = str(final)
+                    except:
+                        raise ValueError("Value is not a valid type")
+
+        return final
+
 
         
             
@@ -129,7 +147,7 @@ stoic = stoicFile("data.stoic")
 stoic.printOut()
 
 zx = stoic.getBase('among').getSubsection('-sheesh').getValue()
-print(zx)
+print(str(zx))
 
 #if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if works as expected.
 #udsign an objectat lvl = prev + 1
