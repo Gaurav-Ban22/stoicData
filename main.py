@@ -14,12 +14,13 @@ class dataHolder:
         self.data = data
 
     def getSubsection(self, name):
-         for key in self.data:
-            if key == name:
+        for key in self.data:
+
+            if key[0] == name:
                 if self.data[key] == self.level + 1:
                     return dataHolder(name, self.level + 1)
-            else:
-                raise ValueError("Category " + name + " doesn't exist")
+            
+        raise ValueError("Category " + name + " doesn't exist")
 
     
 
@@ -127,9 +128,13 @@ stoic = stoicFile("data.stoic")
 
 stoic.printOut()
 
-zx = stoic.getBase('among').name
+zx = stoic.getBase('among').getSubsection('potato').name
+print(zx)
 
-#if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if this works as expected.
+#if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if works as expected.
+#udsign an objectat lvl = prev + 1
+#usinga nobject ot store data and to show information of subsections nd the levle tis at, so yu can retrive the name and you can 
+#using bjects to store data and to store the value of each thing as we ll as the level of each thing, and then you can retriveve it kterand call funcitons on them to find the item 
 
 
 
