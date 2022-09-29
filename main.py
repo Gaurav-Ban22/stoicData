@@ -8,9 +8,21 @@ class whatToGet(Enum):
     #probably doing this wrong
 
 class dataHolder:
-    def __init__(self, name, level=0):
+    def __init__(self, name, data, level=0, ):
         self.name = name
         self.level = level
+        self.data = data
+
+    def getSubsection(self, name):
+         for key in self.data:
+            if key == name:
+                if self.data[key] == self.level + 1:
+                    return dataHolder(name, self.level + 1)
+            else:
+                raise ValueError("Category " + name + " doesn't exist")
+
+    
+
 
 class stoicFile:
     def __init__(self, pathe):
@@ -53,6 +65,17 @@ class stoicFile:
                 except:
                     pass
                 self.data[name]  = level
+
+
+    def getBase(self, name):
+        for key in self.data:
+            if key[0] == name:
+                #me when the code works :flumshed:               if self.data[key] == 1:
+                x = dataHolder(name, self.data, 0)
+                return x
+            
+            
+
 
         
 #gotta do actual value getting and data type conversion
@@ -104,5 +127,9 @@ stoic = stoicFile("data.stoic")
 
 stoic.printOut()
 
-# print(stoic.get(dataHolder("among"), whatToGet.NAME).level)
+zx = stoic.getBase('among').name
+
+#if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if this works as expected.
+
+
 
