@@ -18,7 +18,16 @@ class stoicFile:
                 level = 0
                 name = ""
                 if line.startswith("    "):
-                    level += 1  
+                    test = 0
+                    for char in line:
+                        if char == " ":
+                            test += 1
+                            if test == 4:
+                                level += 1
+                                test = 0
+                        else:
+                            break
+                        
                 for char in line.strip():   
                     name += char
                 self.data[name]  = level
