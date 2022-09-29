@@ -1,4 +1,6 @@
-among:
-    -sheesh
+among
+    -sheesh: 3
     -potato
-amo:
+        -testobject
+            -testtest: 4
+        -thsisbelopw: 3

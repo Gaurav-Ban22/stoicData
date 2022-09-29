@@ -16,7 +16,7 @@ class stoicFile:
             print(lines)
             for line in lines:    
                 level = 0
-                name = ""
+                name = ("","")
                 if line.startswith("    "):
                     test = 0
                     for char in line:
@@ -27,16 +27,38 @@ class stoicFile:
                                 test = 0
                         else:
                             break
-                        
-                for char in line.strip():   
-                    name += char
+                g = -1  
+                parts = line.split(":") 
+                try:
+                    listo = list(name)
+                    listo[0] = parts[0].strip()
+
+                    name = tuple(listo)
+
+                    listo[1] += parts[1].strip()
+                    name = tuple(listo)
+
+                            #okay for now, but needs to be changed to be more efficient
+                except:
+                    pass
                 self.data[name]  = level
 
         
-
+#gotta do actual value getting and data type conversion
     def printOut(self):
         for key in self.data:
             print(key, self.data[key])
+
+    # # def getSubsection(self, name):
+    # #     try:
+    # #         level = self.data[name]
+
+    # #     except:
+    # #         raise Exception("No such subsection of stoic: " + self.pathe)
+        
+         
+            
+    
 
 
 stoic = stoicFile("data.stoic")
