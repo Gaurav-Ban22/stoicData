@@ -1,5 +1,16 @@
 
 import os
+from enum import Enum
+
+class whatToGet(Enum):
+    VALUE = "Value"
+    NAME = "Name"
+    #probably doing this wrong
+
+class dataHolder:
+    def __init__(self, name, level=0):
+        self.name = name
+        self.level = level
 
 class stoicFile:
     def __init__(self, pathe):
@@ -16,7 +27,7 @@ class stoicFile:
             print(lines)
             for line in lines:    
                 level = 0
-                name = ("","")
+                name = ("","header cannot have value")
                 if line.startswith("    "):
                     test = 0
                     for char in line:
@@ -35,7 +46,7 @@ class stoicFile:
 
                     name = tuple(listo)
 
-                    listo[1] += parts[1].strip()
+                    listo[1] = parts[1].strip()
                     name = tuple(listo)
 
                             #okay for now, but needs to be changed to be more efficient
@@ -49,12 +60,40 @@ class stoicFile:
         for key in self.data:
             print(key, self.data[key])
 
-    # # def getSubsection(self, name):
-    # #     try:
-    # #         level = self.data[name]
 
-    # #     except:
-    # #         raise Exception("No such subsection of stoic: " + self.pathe)
+
+
+
+    # def get(self, dat, getWhat):
+
+    #     if not isinstance(getWhat, whatToGet):
+    #         raise TypeError("getWhat must be of enum type whatToGet (VALUE or NAME)")
+    #     if not isinstance(dat, dataHolder):
+    #         raise TypeError("second parameter must be of type dataHolder")
+
+    #     if getWhat.value == "Value":
+
+    #         for key in self.data:
+    #             if key[0] == dat.name and self.data[key] == dat.level+1:
+    #                 #if name (0th index) of tuple is name and the level is prev level +1, return value which is 1st index of tuple
+    #                 return key[1]
+
+            
+
+
+
+
+    #     if getWhat.value == "Name": 
+
+    #         try:
+    #             level = self.data[dat.name]
+    #             #checking if exists easily by checking if level exists
+    #             return dataHolder(dat.name, level)
+
+
+    #         except:
+    #             raise Exception("No such subsection of stoicfile " + self.pathe)
+        
         
          
             
@@ -62,5 +101,8 @@ class stoicFile:
 
 
 stoic = stoicFile("data.stoic")
+
 stoic.printOut()
+
+# print(stoic.get(dataHolder("among"), whatToGet.NAME).level)
 
