@@ -1,12 +1,4 @@
 
-import os
-from enum import Enum
-
-class whatToGet(Enum):
-    VALUE = "Value"
-    NAME = "Name"
-    #probably doing this wrong
-
 class dataHolder:
     def __init__(self, name, data, level=0, ):
         self.name = name
@@ -18,9 +10,17 @@ class dataHolder:
 
             if key[0] == name:
                 if self.data[key] == self.level + 1:
-                    return dataHolder(name, self.level + 1)
-            
+                    return dataHolder(name, self.data, self.level + 1)
         raise ValueError("Category " + name + " doesn't exist")
+
+    def getValue(self):
+        for key in self.data:
+            if key[0] == self.name:
+                return key[1]
+
+        
+            
+        
 
     
 
@@ -128,7 +128,7 @@ stoic = stoicFile("data.stoic")
 
 stoic.printOut()
 
-zx = stoic.getBase('among').getSubsection('potato').name
+zx = stoic.getBase('among').getSubsection('-sheesh').getValue()
 print(zx)
 
 #if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if works as expected.
@@ -136,5 +136,8 @@ print(zx)
 #usinga nobject ot store data and to show information of subsections nd the levle tis at, so yu can retrive the name and you can 
 #using bjects to store data and to store the value of each thing as we ll as the level of each thing, and then you can retriveve it kterand call funcitons on them to find the item 
 
-
+#can get the path and the pattern to each subsecton
+#can get the subscetion validated and if it exists can retrieve values ush cas name
+#can bet the path to the subse
+#can get path to wanted subsec,
 
