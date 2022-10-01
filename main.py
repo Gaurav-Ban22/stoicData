@@ -6,12 +6,18 @@ class dataHolder:
         self.data = data
 
     def getSubsection(self, name):
-        for key in self.data:
-
+        hasGotToCurrent = False
+        for index, (key, value) in enumerate(self.data.items()):
+            if key[0] == self.name:
+                hasGotToCurrent = True
+            if self.data[key] == self.level and key[0] != self.name and hasGotToCurrent:
+                break
+            
             if key[0] == name:
-                if self.data[key] == self.level + 1:
+                # or value, but dont want to change it
+                if self.data[key] == self.level                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     + 1:
                     return dataHolder(name, self.data, self.level + 1)
-        raise ValueError("Category " + name + " doesn't exist")
+        raise ValueError("Category " + name + " doesn't exist in " + self.name)
 
     def getValue(self):
         for key in self.data:
@@ -90,6 +96,7 @@ class stoicFile:
         for key in self.data:
             if key[0] == name:
                 #me when the code works :flumshed:               if self.data[key] == 1:
+                #checks if exists
                 x = dataHolder(name, self.data, 0)
                 return x
             
@@ -145,6 +152,9 @@ class stoicFile:
 stoic = stoicFile("data.stoic")
 
 stoic.printOut()
+
+zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+print(str(zx))
 
 zx = stoic.getBase('among').getSubsection('-sheesh').getValue()
 print(str(zx))
