@@ -7,22 +7,24 @@ class dataHolder:
 
     def getSubsection(self, name):
         hasGotToCurrent = False
+        #because of this it skips the first time if two keys in the same level are the same, gotta do some debugging to make sure that the name that is the mainsection comes first and then fionds the susbection u want sooo
         for index, (key, value) in enumerate(self.data.items()):
-            if key[0] == self.name:
+            #technically don't need enumerate way anymore csharp tanlnta
+            if key[0] == self.name[0]:
                 hasGotToCurrent = True
-            if self.data[key] == self.level and key[0] != self.name and hasGotToCurrent:
+            if self.data[key] == self.level and key[0] != self.name[0] and hasGotToCurrent:
                 break
             
             if key[0] == name:
+                print('git gere' + name)
+                print(key)
                 # or value, but dont want to change it
-                if self.data[key] == self.level                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     + 1:
-                    return dataHolder(name, self.data, self.level + 1)
-        raise ValueError("Category " + name + " doesn't exist in " + self.name)
+                if self.data[key] == self.level+1:
+                    return dataHolder(key, self.data, self.level + 1)
+        raise ValueError("Category " + name + " doesn't exist in " + self.name[0])
 
     def getValue(self):
-        for key in self.data:
-            if key[0] == self.name:
-                z = key[1]
+        z = self.name[1]
 
         try:
             final = int(z)
@@ -97,7 +99,7 @@ class stoicFile:
             if key[0] == name:
                 #me when the code works :flumshed:               if self.data[key] == 1:
                 #checks if exists
-                x = dataHolder(name, self.data, 0)
+                x = dataHolder(key, self.data, 0)
                 return x
             
             
@@ -156,9 +158,22 @@ stoic.printOut()
 zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
 print(str(zx))
 
+# zx = stoic.getBase('among').getSubsection('pog').getValue()
+#this wom't work, tested :D pog
+# print(str(zx))
+
 zx = stoic.getBase('among').getSubsection('-sheesh').getValue()
+#this workls, pgo tbatkna
 print(str(zx))
 
+
+zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+#i just realized theres an error
+print(zx)
+
+zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
+#i just realized theres an error
+print(zx)
 #if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if works as expected.
 #udsign an objectat lvl = prev + 1
 #usinga nobject ot store data and to show information of subsections nd the levle tis at, so yu can retrive the name and you can 
