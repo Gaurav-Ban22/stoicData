@@ -15,7 +15,7 @@ class dataHolder:
             if self.data[key] == self.level and key[0] != self.name[0] and hasGotToCurrent:
                 break
             
-            if key[0] == name:
+            if key[0] == name and hasGotToCurrent:
                 print('git gere' + name)
                 print(key)
                 # or value, but dont want to change it
