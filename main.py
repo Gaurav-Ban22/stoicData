@@ -1,9 +1,10 @@
 
 class dataHolder:
-    def __init__(self, name, data, level=0, ):
+    def __init__(self, name, data, index, level=0):
         self.name = name
         self.level = level
         self.data = data
+        self.index = index
 
     def getSubsection(self, name):
         hasGotToCurrent = False
@@ -16,18 +17,18 @@ class dataHolder:
                 break
             
             if key[0] == name and hasGotToCurrent:
-                print('git gere' + name)
-                print(key)
+
                 # or value, but dont want to change it
                 if self.data[key] == self.level+1:
-                    return dataHolder(key, self.data, self.level + 1)
-        raise ValueError("Category " + name + " doesn't exist in " + self.name[0])
+                    return dataHolder(key, self.data, index, self.level + 1)
+        raise ValueError("Category " + name + " doesn't exist in " + self.name[0]) 
 
     def getValue(self):
         z = self.name[1]
 
         try:
             final = int(z)
+            
         except:
             try:
                 final = float(z)
@@ -42,6 +43,20 @@ class dataHolder:
                         raise ValueError("Value is not a valid type")
 
         return final
+
+    def setValue(self, value, stoicObj):
+        lis = list(self.data.keys())
+        for index, (key, valu) in enumerate(self.data.items()):
+            if index == self.index:
+                x = list(key)
+                x[1] = value
+                x = tuple(x)
+                self.data[x] = self.data.pop(key)
+                break
+
+        stoicObj.reload(self.data)
+
+
 
 
         
@@ -66,7 +81,7 @@ class stoicFile:
             print(lines)
             for line in lines:    
                 level = 0
-                name = ("","header cannot have value")
+                name = ("","")
                 if line.startswith("    "):
                     test = 0
                     for char in line:
@@ -95,12 +110,26 @@ class stoicFile:
 
 
     def getBase(self, name):
-        for key in self.data:
+        for index, (key, value) in enumerate(self.data.items()):
             if key[0] == name:
                 #me when the code works :flumshed:               if self.data[key] == 1:
                 #checks if exists
-                x = dataHolder(key, self.data, 0)
+                x = dataHolder(key, self.data, index, 0)
                 return x
+
+    def reload(self, newData):
+        file = open(self.pathe, "r+")
+        lList = file.readlines()  
+        for index, (key, value) in enumerate(newData.items()):
+            for indexo, (keyo, valueo) in enumerate(self.data.items()):
+                if key != keyo and index == indexo:
+                    lList[index] = ("    " * value) + key[0] + ": " + str(key[1]) +"\n"
+        file.close()
+
+        self.data = newData
+
+
+        
             
             
 
@@ -174,6 +203,15 @@ print(zx)
 zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
 #i just realized theres an error
 print(zx)
+
+
+#its adding to the end so the entire dictionary iorder system to confirm and ensure accuracy with whether something is a subsection of anmother is babaopoeyed
+#it adds it at the end, not before
+#Howeer, at least it changes the ocrrect dictionary entry and leaves theo ther one with the same name alone (cuz dif value???)
+
+# zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
+# #i just realized theres an error
+# print(zx)
 #if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if works as expected.
 #udsign an objectat lvl = prev + 1
 #usinga nobject ot store data and to show information of subsections nd the levle tis at, so yu can retrive the name and you can 
