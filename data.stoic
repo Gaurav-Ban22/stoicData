@@ -1,12 +1,12 @@
-among
-    -sheesh: 2          
+among: 
+    -sheesh: 2
     potato: 4
         test: 8
             -testtest: 4
         -thsisbelopw: 3
-    haugh
+    haugh: 
         sheeash: 4
-shee
+shee: 
     pog: 0
-        test: 3
+        test: 7
     green: 2

@@ -130,12 +130,11 @@ class stoicFile:
                 return x
 
     def reload(self, newData):
+
         file = open(self.pathe, "r+")
         lList = file.readlines()  
         for index, key in enumerate(newData.sections):
-            for indexo, keyo in enumerate(self.data.sections):
-                if key != keyo and int(index) == int(indexo):
-                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+                lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
 
         with open(self.pathe, "w") as f:
             f.writelines(lList)
@@ -220,8 +219,8 @@ zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
 #i just realized theres an error
 print(zx)
 
-stoic.getBase('shee').getSubsection('pog').getSubsection('test').setValue(5, stoic)
-stoic.printOut()
+stoic.getBase('shee').getSubsection('pog').getSubsection('test').setValue(7, stoic)
+# stoic.printOut()
 
 zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
 print(zx)
