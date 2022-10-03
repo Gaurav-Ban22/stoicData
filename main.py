@@ -134,8 +134,12 @@ class stoicFile:
         lList = file.readlines()  
         for index, key in enumerate(newData.sections):
             for indexo, keyo in enumerate(self.data.sections):
-                if key != keyo and index == indexo:
-                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) +"\n"
+                if key != keyo and int(index) == int(indexo):
+                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+
+        with open(self.pathe, "w") as f:
+            f.writelines(lList)
+            
         file.close()
 
         self.data = newData
