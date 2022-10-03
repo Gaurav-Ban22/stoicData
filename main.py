@@ -82,12 +82,14 @@ class dataHolder:
 
 class stoicFile:
     def __init__(self, pathe):
-        self.data = lookerUpper([], [])
+        self.data = lookerUpper()
         self.pathe = pathe
         self.load(pathe)
 
 
     def load(self, pathe):
+        self.data.sections = []
+        self.data.levels = []
         with open(pathe, 'r') as f:
             level = 0
 
