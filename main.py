@@ -216,6 +216,12 @@ zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
 #i just realized theres an error
 print(zx)
 
+stoic.getBase('shee').getSubsection('pog').getSubsection('test').setValue(5, stoic)
+stoic.printOut()
+
+zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
+print(zx)
+
 
 
 
