@@ -1,3 +1,26 @@
+#edit until here
+#edit until here v2
+class lookerUpper:
+    def __init__(self, sections=[], levels=[]):
+        self = self
+        self.sections = sections
+        self.levels = levels
+    
+    def add(self, item, item2):
+        self.sections.append(item)
+        self.levels.append(item2)
+    
+    def replaceAt(self, index, value):
+        self.sections[index] = value
+
+    def getSections(self):
+        return self.sections
+
+    def getLevels(self):
+        return self.levels
+
+    #for loopings sake
+
 
 class dataHolder:
     def __init__(self, name, data, index, level=0):
@@ -9,17 +32,17 @@ class dataHolder:
     def getSubsection(self, name):
         hasGotToCurrent = False
         #because of this it skips the first time if two keys in the same level are the same, gotta do some debugging to make sure that the name that is the mainsection comes first and then fionds the susbection u want sooo
-        for index, (key, value) in enumerate(self.data.items()):
+        for index, key in enumerate(self.data.sections):
             #technically don't need enumerate way anymore csharp tanlnta
             if key[0] == self.name[0]:
                 hasGotToCurrent = True
-            if self.data[key] == self.level and key[0] != self.name[0] and hasGotToCurrent:
+            if self.data.levels[index] == self.level and key[0] != self.name[0] and hasGotToCurrent:
                 break
             
             if key[0] == name and hasGotToCurrent:
 
                 # or value, but dont want to change it
-                if self.data[key] == self.level+1:
+                if self.data.levels[index] == self.level+1:
                     return dataHolder(key, self.data, index, self.level + 1)
         raise ValueError("Category " + name + " doesn't exist in " + self.name[0]) 
 
@@ -45,30 +68,19 @@ class dataHolder:
         return final
 
     def setValue(self, value, stoicObj):
-        lis = list(self.data.keys())
-        for index, (key, valu) in enumerate(self.data.items()):
+        for index, key in enumerate(self.data.sections):
             if index == self.index:
                 x = list(key)
                 x[1] = value
                 x = tuple(x)
-                self.data[x] = self.data.pop(key)
+                self.data.replaceAt(index, x)
                 break
 
         stoicObj.reload(self.data)
 
-
-
-
-        
-            
-        
-
-    
-
-
 class stoicFile:
     def __init__(self, pathe):
-        self.data = {}
+        self.data = lookerUpper()
         self.pathe = pathe
         self.load(pathe)
 
@@ -106,11 +118,11 @@ class stoicFile:
                             #okay for now, but needs to be changed to be more efficient
                 except:
                     pass
-                self.data[name]  = level
-
+                self.data.add(name, level)
+                #parser stays the same because it is flexible and works for any data storage, just gotta change 1 line to sava data at the end.
 
     def getBase(self, name):
-        for index, (key, value) in enumerate(self.data.items()):
+        for index, key in enumerate(self.data.sections):
             if key[0] == name:
                 #me when the code works :flumshed:               if self.data[key] == 1:
                 #checks if exists
@@ -120,10 +132,10 @@ class stoicFile:
     def reload(self, newData):
         file = open(self.pathe, "r+")
         lList = file.readlines()  
-        for index, (key, value) in enumerate(newData.items()):
-            for indexo, (keyo, valueo) in enumerate(self.data.items()):
+        for index, key in enumerate(newData.sections):
+            for indexo, keyo in enumerate(self.data.sections):
                 if key != keyo and index == indexo:
-                    lList[index] = ("    " * value) + key[0] + ": " + str(key[1]) +"\n"
+                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) +"\n"
         file.close()
 
         self.data = newData
@@ -137,8 +149,8 @@ class stoicFile:
         
 #gotta do actual value getting and data type conversion
     def printOut(self):
-        for key in self.data:
-            print(key, self.data[key])
+        for index, key in enumerate(self.data.getSections()):
+            print(str(key) + ":" + str(self.data.levels[index]) + "\n")
 
 
 
@@ -203,6 +215,9 @@ print(zx)
 zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
 #i just realized theres an error
 print(zx)
+
+
+
 
 
 #its adding to the end so the entire dictionary iorder system to confirm and ensure accuracy with whether something is a subsection of anmother is babaopoeyed
