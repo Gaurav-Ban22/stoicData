@@ -1,0 +1,10 @@
+cars
+    volvo: 20
+        horsepower: 90
+        color: blue
+    toyota: 30
+        horsepower: 100
+        color: red
+    mazda: 34
+        horsepower: 60
+        color: brown

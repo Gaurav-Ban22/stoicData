@@ -11,6 +11,8 @@ class lookerUpper:
         self.levels.append(item2)
     
     def replaceAt(self, index, value):
+        #works pog tabktan
+
         self.sections[index] = value
 
     def getSections(self):
@@ -80,7 +82,7 @@ class dataHolder:
 
 class stoicFile:
     def __init__(self, pathe):
-        self.data = lookerUpper()
+        self.data = lookerUpper([], [])
         self.pathe = pathe
         self.load(pathe)
 
@@ -225,7 +227,17 @@ stoic.getBase('shee').getSubsection('pog').getSubsection('test').setValue(7, sto
 zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
 print(zx)
 
+zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+print(str(zx))
 
+
+print("-----------------------------------")
+
+carStoic = stoicFile("cars.stoic")
+carStoic.printOut()
+
+zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+print(str(zx))
 
 
 
