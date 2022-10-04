@@ -239,7 +239,21 @@ carStoic = stoicFile("cars.stoic")
 carStoic.printOut()
 
 zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+#gets valuje
 print(str(zx))
+
+carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(100, carStoic)
+#sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
+
+zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue()
+print(zx)
+
+carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(10, carStoic)
+#sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
+
+zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
+
+print(zx)
 
 
 
