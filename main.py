@@ -149,13 +149,12 @@ class stoicFile:
 
         file = open(self.pathe, "r+")
         lList = file.readlines() 
-        if len(newData.sections) == len(lList): 
-            for index, key in enumerate(newData.sections):
-                try:
-                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
-                except:
-                    lList.append(" ")
-                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+        for index, key in enumerate(newData.sections):
+            try:
+                lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+            except:
+                lList.append(" ")
+                lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
 
 
         with open(self.pathe, "w") as f:
@@ -277,6 +276,11 @@ zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower')
 print(zx)
 
 carStoic.getBase('cars').getSubsection('volvo').insertSubsection('unitsSold', 300, carStoic)
+
+zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('unitsSold').getValue() 
+#coed comiled
+#edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
+print(zx)
 
 
 
