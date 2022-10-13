@@ -282,7 +282,9 @@ zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('unitsSold').
 #edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
 print(zx)
 
+carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl', 100, carStoic)
 
+#allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
 
 #its adding to the end so the entire dictionary iorder system to confirm and ensure accuracy with whether something is a subsection of anmother is babaopoeyed
 #it adds it at the end, not before

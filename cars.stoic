@@ -1,8 +1,11 @@
 cars: 
     volvo: 20
+        unitsSold: 300
+        unitsSold: 300
         horsepower: 30
         color: blue
     toyota: 30
+        coolnessLvl: 100
         horsepower: 100
         color: red
     mazda: 34
