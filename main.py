@@ -45,8 +45,14 @@ class dataHolder:
 
                 # or value, but dont want to change it
                 if self.data.levels[index] == self.level+1:
+                    #checks if subsectione xists with given nmam,e and lervel below
                     return dataHolder(key, self.data, index, self.level + 1)
+                    #cehcs iki  subseciton by wanted base
+                    #check sis ubs
+                    #checks i fbpassed name pf nbase section to chejck if subsection
+                    #dcoed ocmpiligj
         raise ValueError("Category " + name + " doesn't exist in " + self.name[0]) 
+        #retursn error if jothng ofund
 
     def getValue(self):
         z = self.name[1]
@@ -79,6 +85,12 @@ class dataHolder:
                 break
 
         stoicObj.reload(self.data)
+
+    def insertSubsection(self, name, value, stoicObj):
+        self.data.sections.insert(self.index+1, (name, value))
+        self.data.levels.insert(self.index+1, self.level+1) #increasing level by 1 because want to make it subsection of level previous given as the base to add into, so +1
+        stoicObj.reload(self.data)
+        #reloads txt based on self.data, which gets passed to stoiFile and sets it as its self.data
 
 class stoicFile:
     def __init__(self, pathe):
@@ -147,10 +159,6 @@ class stoicFile:
 
         self.data = newData
 
-
-        
-            
-            
 
 
         
@@ -242,6 +250,12 @@ zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getVal
 #gets valuje
 print(str(zx))
 
+zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
+#coed comiled
+#edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
+print(zx)
+
+
 carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(100, carStoic)
 #sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
 
@@ -252,8 +266,11 @@ carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setV
 #sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
 
 zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
-
+#coed comiled
+#edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
 print(zx)
+
+# carStoic.getBase('cars').getSubsection('volvo').insertSubsection('unitsSold', 300, carStoic)
 
 
 
@@ -273,4 +290,5 @@ print(zx)
 #can get the subscetion validated and if it exists can retrieve values ush cas name
 #can bet the path to the subse
 #can get path to wanted subsec,
+
 
