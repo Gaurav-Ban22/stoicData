@@ -148,9 +148,15 @@ class stoicFile:
     def reload(self, newData):
 
         file = open(self.pathe, "r+")
-        lList = file.readlines()  
-        for index, key in enumerate(newData.sections):
-                lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+        lList = file.readlines() 
+        if len(newData.sections) == len(lList): 
+            for index, key in enumerate(newData.sections):
+                try:
+                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+                except:
+                    lList.append(" ")
+                    lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
+
 
         with open(self.pathe, "w") as f:
             f.writelines(lList)
@@ -262,7 +268,7 @@ carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setV
 zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue()
 print(zx)
 
-carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(10, carStoic)
+carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(30, carStoic)
 #sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
 
 zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
@@ -270,7 +276,7 @@ zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower')
 #edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
 print(zx)
 
-# carStoic.getBase('cars').getSubsection('volvo').insertSubsection('unitsSold', 300, carStoic)
+carStoic.getBase('cars').getSubsection('volvo').insertSubsection('unitsSold', 300, carStoic)
 
 
 

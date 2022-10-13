@@ -1,6 +1,6 @@
 cars: 
     volvo: 20
-        horsepower: 10
+        horsepower: 30
         color: blue
     toyota: 30
         horsepower: 100
