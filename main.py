@@ -92,6 +92,21 @@ class dataHolder:
         stoicObj.reload(self.data)
         #reloads txt based on self.data, which gets passed to stoiFile and sets it as its self.data
 
+    def deleteSubsection(self, name, stoicObj):
+        hasGot = False
+        for index, key in enumerate(self.data.sections):
+            if key[0] == self.name:
+                hasGot = True
+            if key[0] == name and hasGot:
+                #checks if passed main base secition and checks if susbection
+                if self.data.levels[index] == self.level+1:
+                    #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
+                    self.data.sections.pop(index)
+                    self.data.levels.pop(index)
+                    break
+        stoicObj.reload(self.data)
+        #have to add delhandling
+
 class stoicFile:
     def __init__(self, pathe):
         self.data = lookerUpper()
