@@ -95,10 +95,9 @@ class dataHolder:
     def deleteSubsection(self, name, stoicObj):
         hasGot = False
         for index, key in enumerate(self.data.sections):
-            if key[0] == self.name:
+            if key[0] == self.name[0]:
                 hasGot = True
             if key[0] == name and hasGot:
-                print('got here')
                 #checks if passed main base secition and checks if susbection
                 if self.data.levels[index] == self.level+1:
                     #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
@@ -296,6 +295,9 @@ print(zx)
 carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl', 100, carStoic)
 
 carStoic.getBase('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
+print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').getValue())
+
+carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('horsepower', carStoic)
 
 #allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
 
