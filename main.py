@@ -98,6 +98,7 @@ class dataHolder:
             if key[0] == self.name:
                 hasGot = True
             if key[0] == name and hasGot:
+                print('got here')
                 #checks if passed main base secition and checks if susbection
                 if self.data.levels[index] == self.level+1:
                     #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
@@ -163,14 +164,9 @@ class stoicFile:
     def reload(self, newData):
 
         file = open(self.pathe, "r+")
-        lList = file.readlines() 
+        lList = []
         for index, key in enumerate(newData.sections):
-            try:
-                lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
-            except:
-                lList.append(" ")
-                lList[index] = ("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n"
-
+            lList.append(("    " * newData.levels[index]) + key[0] + ": " + str(key[1]) + "\n")
 
         with open(self.pathe, "w") as f:
             f.writelines(lList)
@@ -298,6 +294,8 @@ zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('unitsSold').
 print(zx)
 
 carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl', 100, carStoic)
+
+carStoic.getBase('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
 
 #allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
 
