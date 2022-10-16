@@ -1,5 +1,8 @@
 #edit until here
 #edit until here v2
+from tkinter import N
+
+
 class lookerUpper:
     def __init__(self, sections=[], levels=[]):
         self = self
@@ -94,6 +97,7 @@ class dataHolder:
 
     def deleteSubsection(self, name, stoicObj):
         hasGot = False
+        brokenOut = False
         for index, key in enumerate(self.data.sections):
             if key[0] == self.name[0]:
                 hasGot = True
@@ -103,9 +107,13 @@ class dataHolder:
                     #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
                     self.data.sections.pop(index)
                     self.data.levels.pop(index)
+                    brokenOut = True
                     break
+
+        if not brokenOut:
+            raise ValueError("Category " + name + " doesn't exist in " + self.name[0] + " thus, unable to delete it")
         stoicObj.reload(self.data)
-        #have to add delhandling
+        #added delhandling
 
 class stoicFile:
     def __init__(self, pathe):
@@ -297,7 +305,7 @@ carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl',
 carStoic.getBase('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
 print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').getValue())
 
-carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('horsepower', carStoic)
+carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('bmw', carStoic)
 
 #allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
 
