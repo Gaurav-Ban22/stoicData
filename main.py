@@ -110,19 +110,26 @@ class dataHolder:
                     #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
                     
                     passed = False
-                    for index2, key2 in enumerate(self.data.sections):
-                        if index2 == index:
+                    passedIf = False
+                    m = 0
+                    for inde, key2 in enumerate(self.data.sections):
+                        if inde == index and not passedIf:
                             passed = True
+                            passedIf = True
+                            print("passed")
                         elif passed:
-                            if self.data.levels[index2] == self.level+1:
-                                self.data.sections.pop(index2)
-                                self.data.levels.pop(index2)
+                            if self.data.levels[inde] == self.level+2:
+                                m += 1
+                            else:
+                                break
+                                #coudxl otpimzie much mroe witha  boolean and then a breakage func lithe one belpow this toi codde4
                         #coudld oelif but dont need to cin yhis python ciode
                         
-                        elif self.data.levels[index2] != self.level+1:
-                            break
-                    self.data.sections.pop(index)
-                    self.data.levels.pop(index)
+
+                    for i in range(m+1):
+                        self.data.sections.pop(index)
+                        self.data.levels.pop(index)
+                    #it ends up deleting title with this, and then this deltes next
                     brokenOut = True
                     break
 
@@ -147,7 +154,7 @@ class stoicFile:
             level = 0
 
             lines = f.readlines()
-            print(lines)
+           
             for line in lines:    
                 level = 0
                 name = ("","")
@@ -347,4 +354,4 @@ print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').ge
 
 kt = stoicFile("keyboardTypes.stoic")
 
-kt.getBase('switches').deleteSubsection('red', kt)
+kt.getBase('switches').deleteSubsection('blue', kt)
