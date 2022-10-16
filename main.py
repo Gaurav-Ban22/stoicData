@@ -330,7 +330,7 @@ carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl',
 carStoic.getBase('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
 print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').getValue())
 
-#carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('bmw', carStoic)
+carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('bmw', carStoic)
 
 #allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
 

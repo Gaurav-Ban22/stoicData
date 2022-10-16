@@ -9,3 +9,8 @@ switches:
         color: '#00FF00'
     yellow: 
         sheesh: "3"
+    blue: 
+        name: Blue
+        icon: mdilightbulb
+        entity_id: light.blue
+        color: '#0000FF'
