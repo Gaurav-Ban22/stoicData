@@ -1,7 +1,3 @@
-#edit until here
-#edit until here v2
-from tkinter import N
-
 
 class lookerUpper:
     def __init__(self, sections=[], levels=[]):
@@ -94,6 +90,12 @@ class dataHolder:
         self.data.levels.insert(self.index+1, self.level+1) #increasing level by 1 because want to make it subsection of level previous given as the base to add into, so +1
         stoicObj.reload(self.data)
         #reloads txt based on self.data, which gets passed to stoiFile and sets it as its self.data
+        #in order to check for duplciates would ghave to esdit this
+        #coudl use a fopr loop to check for items in the ddataholder 
+        #then check if the index is greater than current indx and chek if level is currentleve + 1 
+        #this woukd be a good way to check for duplicates and ensure subsections but would need a way to differntiate between differnxt ubsections of different parent sections
+        # because this isnt just an isnertion or an addng or a getting, its a checking.
+        #could check rfoir all of level + 1 until it isnt, and then check in the names of them, if they equal what oyu ened to add
 
     def deleteSubsection(self, name, stoicObj):
         hasGot = False
@@ -101,6 +103,7 @@ class dataHolder:
         for index, key in enumerate(self.data.sections):
             if key[0] == self.name[0]:
                 hasGot = True
+                #has to pass it to get to the subsection of the passed parent section;
             if key[0] == name and hasGot:
                 #checks if passed main base secition and checks if susbection
                 if self.data.levels[index] == self.level+1:
@@ -109,6 +112,8 @@ class dataHolder:
                     self.data.levels.pop(index)
                     brokenOut = True
                     break
+
+            #could use indexes to check if fgreater than index of parent section to see if subsection of parent section (would still need the check to see if its a subsection weioth the index + )
 
         if not brokenOut:
             raise ValueError("Category " + name + " doesn't exist in " + self.name[0] + " thus, unable to delete it")
