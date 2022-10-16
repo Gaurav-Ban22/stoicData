@@ -110,6 +110,19 @@ class dataHolder:
                     #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
                     self.data.sections.pop(index)
                     self.data.levels.pop(index)
+                    passed = False
+                    for index2, key2 in enumerate(self.data.sections):
+                        if index2 == index:
+                            passed = True
+                        elif passed:
+                            if self.data.levels[index2] == self.level+1:
+                                self.data.sections.pop(index2)
+                                self.data.levels.pop(index2)
+                        #coudld oelif but dont need to cin yhis python ciode
+                        
+                        elif self.data.levels[index2] != self.level+1:
+                            break
+
                     brokenOut = True
                     break
 
@@ -334,4 +347,4 @@ print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').ge
 
 kt = stoicFile("keyboardTypes.stoic")
 
-kt.getBase('switches').getSubsection('green').insertSubsection('name', 'cherrymx', kt)
+kt.getBase('switches').deleteSubsection('red', kt)
