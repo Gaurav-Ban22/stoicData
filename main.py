@@ -108,8 +108,7 @@ class dataHolder:
                 #checks if passed main base secition and checks if susbection
                 if self.data.levels[index] == self.level+1:
                     #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
-                    self.data.sections.pop(index)
-                    self.data.levels.pop(index)
+                    
                     passed = False
                     for index2, key2 in enumerate(self.data.sections):
                         if index2 == index:
@@ -122,7 +121,8 @@ class dataHolder:
                         
                         elif self.data.levels[index2] != self.level+1:
                             break
-
+                    self.data.sections.pop(index)
+                    self.data.levels.pop(index)
                     brokenOut = True
                     break
 
