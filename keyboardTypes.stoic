@@ -1,0 +1,16 @@
+switches: 
+    red: 
+        name: Red
+        icon: mdilightbulb
+        entity_id: light.red
+        color: '#FF0000'
+    green: 
+        name: cherrymx
+        icon: mdilightbulb
+        entity_id: light.green
+        color: '#00FF00'
+    blue: 
+        name: Blue
+        icon: mdilightbulb
+        entity_id: light.blue
+        color: '#0000FF'
