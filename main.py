@@ -229,7 +229,7 @@ class stoicFile:
                 self.data.add(name, level)
                 #parser stays the same because it is flexible and works for any data storage, just gotta change 1 line to sava data at the end.
 
-    def getBase(self, name):
+    def getSubsection(self, name):
         for index, key in enumerate(self.data.sections):
             if key[0] == name:
                 #me when the code works :flumshed:               if self.data[key] == 1:
@@ -303,33 +303,33 @@ stoic = stoicFile("data.stoic")
 
 stoic.printOut()
 
-zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+zx = stoic.getSubsection('among').getSubsection('potato').getSubsection('test').getValue()
 print(str(zx))
 
-# zx = stoic.getBase('among').getSubsection('pog').getValue()
+# zx = stoic.getSubsection('among').getSubsection('pog').getValue()
 #this wom't work, tested :D pog
 # print(str(zx))
 
-zx = stoic.getBase('among').getSubsection('-sheesh').getValue()
+zx = stoic.getSubsection('among').getSubsection('-sheesh').getValue()
 #this workls, pgo tbatkna
 print(str(zx))
 
 
-zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+zx = stoic.getSubsection('among').getSubsection('potato').getSubsection('test').getValue()
 #i just realized theres an error
 print(zx)
 
-zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
+zx = stoic.getSubsection('shee').getSubsection('pog').getSubsection('test').getValue()
 #i just realized theres an error
 print(zx)
 
-stoic.getBase('shee').getSubsection('pog').getSubsection('test').setValue(7, stoic)
+stoic.getSubsection('shee').getSubsection('pog').getSubsection('test').setValue(7, stoic)
 # stoic.printOut()
 
-zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
+zx = stoic.getSubsection('shee').getSubsection('pog').getSubsection('test').getValue()
 print(zx)
 
-zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+zx = stoic.getSubsection('among').getSubsection('potato').getSubsection('test').getValue()
 print(str(zx))
 
 
@@ -338,45 +338,45 @@ print("-----------------------------------")
 carStoic = stoicFile("cars.stoic")
 carStoic.printOut()
 
-zx = stoic.getBase('among').getSubsection('potato').getSubsection('test').getValue()
+zx = stoic.getSubsection('among').getSubsection('potato').getSubsection('test').getValue()
 #gets valuje
 print(str(zx))
 
-zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
+zx = carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
 #coed comiled
 #edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
 print(zx)
 
 
-carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(100, carStoic)
+carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('horsepower').setValue(100, carStoic)
 #sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
 
-zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue()
+zx = carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('horsepower').getValue()
 print(zx)
 
-carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').setValue(30, carStoic)
+carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('horsepower').setValue(30, carStoic)
 #sets value and repirnts, and can also see in file that its edited, can pr5int out file contents to prove during runtime
 
-zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
+zx = carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('horsepower').getValue() 
 #coed comiled
 #edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
 print(zx)
 
-carStoic.getBase('cars').getSubsection('volvo').insertSubsection('unitsSold', 300, carStoic)
+carStoic.getSubsection('cars').getSubsection('volvo').insertSubsection('unitsSold', 300, carStoic)
 
-zx = carStoic.getBase('cars').getSubsection('volvo').getSubsection('unitsSold').getValue() 
+zx = carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('unitsSold').getValue() 
 #coed comiled
 #edcits file, and then prints value the nedcits agiana ndprtitns value, see last editg csharp but thsi is python with parsing szxtoic file
 print(zx)
 
-carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl', 100, carStoic)
+carStoic.getSubsection('cars').getSubsection('toyota').insertSubsection('coolnessLvl', 100, carStoic)
 
-carStoic.getBase('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
-print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').getValue())
+carStoic.getSubsection('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
+print(carStoic.getSubsection('cars').getSubsection('volvo').getSubsection('amogus').getValue())
 
-print(carStoic.getBase('cars').returnSubsections('volvo'))
+print(carStoic.getSubsection('cars').returnSubsections('volvo'))
 
-#carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('bmw', carStoic)
+#carStoic.getSubsection('cars').getSubsection('volvo').deleteSubsection('bmw', carStoic)
 
 #allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
 
@@ -384,7 +384,7 @@ print(carStoic.getBase('cars').returnSubsections('volvo'))
 #it adds it at the end, not before
 #Howeer, at least it changes the ocrrect dictionary entry and leaves theo ther one with the same name alone (cuz dif value???)
 
-# zx = stoic.getBase('shee').getSubsection('pog').getSubsection('test').getValue()
+# zx = stoic.getSubsection('shee').getSubsection('pog').getSubsection('test').getValue()
 # #i just realized theres an error
 # print(zx)
 #if this passes n errors and oth of thenm exist and are in realistic form, with sheesh as a subsetion of among, if works as expected.
@@ -398,5 +398,9 @@ print(carStoic.getBase('cars').returnSubsections('volvo'))
 #can get path to wanted subsec,
 
 kt = stoicFile("languages.stoic")
+try:
 
-kt.getBase('langs').deleteSubsection('kotlin', kt)
+    kt.getSubsection('langs').deleteSubsection('kotlin', kt)
+
+except:
+    print('this was a test, ensured error')
