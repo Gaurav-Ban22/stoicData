@@ -1,15 +1,5 @@
-langs:
-    kotlin:
-        usage: 2000000
-        type: static
-    java:
-        usage: 2000000000
-        type: static
-        mostUsedOn: bluerayPlayers
-    python:
-        usage: 2000000000
-        type: dynamic
-    rust:
+langs: 
+    rust: 
         usage: 2000000000
         type: static
         mostUsedOn: servers

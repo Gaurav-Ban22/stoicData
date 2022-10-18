@@ -140,6 +140,50 @@ class dataHolder:
         stoicObj.reload(self.data)
         #added delhandling
 
+    def returnSubsections(self, name):
+        hasGot = False
+        brokenOut = False
+        returnable = []
+        for index, key in enumerate(self.data.sections):
+            if key[0] == self.name[0]:
+                hasGot = True
+                #has to pass it to get to the subsection of the passed parent section;
+            if key[0] == name and hasGot:
+                #checks if passed main base secition and checks if susbection
+                if self.data.levels[index] == self.level+1:
+                    #checks if subsection, sicne 1 lwevel hgher then if subsectionsince 1 more tab
+                    
+                    passed = False
+                    passedIf = False
+                    m = 0
+                    for inde, key2 in enumerate(self.data.sections):
+                        if inde == index and not passedIf:
+                            passed = True
+                            passedIf = True
+                            print("passed")
+                        elif passed:
+                            if self.data.levels[inde] == self.level+2:
+                                returnable.append(key2)
+                            else:
+                                break
+                                #coudxl otpimzie much mroe witha  boolean and then a breakage func lithe one belpow this toi codde4
+                        #coudld oelif but dont need to cin yhis python ciode
+                        
+
+                    
+                    #it ends up deleting title with this, and then this deltes next
+                    brokenOut = True
+                    break
+
+            #could use indexes to check if fgreater than index of parent section to see if subsection of parent section (would still need the check to see if its a subsection weioth the index + )
+
+        if not brokenOut:
+            raise ValueError("Category " + name + " doesn't exist in " + self.name[0] + " thus, unable to delete it")
+
+        return returnable
+        
+        
+
 class stoicFile:
     def __init__(self, pathe):
         self.data = lookerUpper()
@@ -330,6 +374,8 @@ carStoic.getBase('cars').getSubsection('toyota').insertSubsection('coolnessLvl',
 carStoic.getBase('cars').getSubsection('volvo').insertSubsection('amogus', 200, carStoic)
 print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').getValue())
 
+print(carStoic.getBase('cars').returnSubsections('volvo'))
+
 #carStoic.getBase('cars').getSubsection('volvo').deleteSubsection('bmw', carStoic)
 
 #allows for returnibng of obejct with all tehd ata so can get data and get vluae and then it can get the vlaue and change it and change susbectiosn
@@ -353,4 +399,4 @@ print(carStoic.getBase('cars').getSubsection('volvo').getSubsection('amogus').ge
 
 kt = stoicFile("languages.stoic")
 
-kt.getBase('langs').deleteSubsection('python', kt)
+kt.getBase('langs').deleteSubsection('kotlin', kt)
