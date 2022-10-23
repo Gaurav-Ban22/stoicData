@@ -1,3 +1,4 @@
+from enum import Enum
 
 class lookerUpper:
     def __init__(self, sections=[], levels=[]):
@@ -61,17 +62,21 @@ class dataHolder:
             
         except:
             try:
-                final = float(z)
+                final = tuple(z)
             except:
-                final = z
+                final = bool(z)
                 try:
-                    final = bool(final)
+                    final = float(z)
                 except:
+                    final = z
                     try:
-                        final = str(final)
+                        final = list(final)
                     except:
-                        raise ValueError("Value is not a valid type")
-
+                        try:
+                            final = str(final)
+                        except:
+                            raise ValueError("Value is not a valid type")
+        #inedfficient but works
         return final
 
     def setValue(self, value, stoicObj):
@@ -163,7 +168,7 @@ class dataHolder:
                             print("passed")
                         elif passed:
                             if self.data.levels[inde] == self.level+2:
-                                returnable.append(key2)
+                                returnable.append((key2, inde))
                             else:
                                 break
                                 #coudxl otpimzie much mroe witha  boolean and then a breakage func lithe one belpow this toi codde4
@@ -181,9 +186,57 @@ class dataHolder:
             raise ValueError("Category " + name + " doesn't exist in " + self.name[0] + " thus, unable to delete it")
 
         return returnable
-        
-        
 
+    def swapLocations(self, dest, stoicObj):
+        #dest is an object of type dataHolder
+        self.data.sections[dest.index], self.data.levels[dest.index] = self.data.sections[self.index], self.data.levels[self.index]
+        self.data.sections[self.index], self.data.levels[self.index] = self.data.sections[dest.index], self.data.levels[dest.index]
+        #basically just resetting the values and the levels because needs to make the klvels the same
+        stoicObj.reload(self.data)
+
+    def moveSubsection(self, dest, stoicObj):
+        if type(dest) == dataHolder:
+
+            self.data.sections.insert(dest.index, self.name)
+            self.data.levels.insert(dest.index, self.level)
+            self.data.sections.pop(self.index)
+
+        if type(dest) == int:
+
+            self.data.sections.insert(dest, self.name)
+            self.data.levels.insert(dest, self.level)
+            self.data.sections.pop(self.index)
+
+        else:
+            raise ValueError("Destination must be either an integer or a dataHolder object")
+
+
+        stoicObj.reload(self.data)
+    
+    def changeLevel(self, level, stoicObj, makeParent = True):
+
+        try:
+            self.data.levels[self.index] = level.level
+        except:
+            self.data.levels[self.index] = level
+
+        if not makeParent:
+            ind = self.index
+            found = False
+            while (not found):
+                ind -= 1
+                if self.data.levels[ind] == level -1:
+                    found = True
+            #cvoudl do the getchidlren over all of the sections in the stoic file, btu cowukl dbe havilty inefficent (coukld check indexes or idneces)
+            self.moveSubsection(ind, stoicObj)
+
+
+            
+        stoicObj.reload(self.data)
+
+        
+            
+        
 class stoicFile:
     def __init__(self, pathe):
         self.data = lookerUpper()
@@ -261,8 +314,8 @@ class stoicFile:
 
 
 
-
-
+#sstill need to make schema genioafasdff schema gen to make into an objerct of the class, named thje filename (easy) for sbsection if subsections contains ubs then ignore also comimt an dpush to githui vbhsot webstiecsoed4ftbaoeoicmeilecpdewbesthoscodewbesitehsptiogh
+#itgvbommitcoedocmpiel#githiwbsitehstoikcopoieloushccoedcsimchsaoprcommitpushcomtggithuigbodferwebsitehsotgithuibo0cmmutopiyushcodecompielgithubcoommitpushwescodecompilwebstiecodecompilehhowssbewicommiopushhsotwbescommitoegmopilhosartybweicompeicopdecmopielcodeightubcommitpush
     # def get(self, dat, getWhat):
 
     #     if not isinstance(getWhat, whatToGet):
@@ -404,3 +457,4 @@ try:
 
 except:
     print('this was a test, ensured error')
+    #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
