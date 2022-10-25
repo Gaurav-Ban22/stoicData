@@ -195,17 +195,18 @@ class dataHolder:
         stoicObj.reload(self.data)
 
     def moveSubsection(self, dest, stoicObj):
+        
         if type(dest) == dataHolder:
-
+            self.data.sections.pop(self.index)
             self.data.sections.insert(dest.index, self.name)
             self.data.levels.insert(dest.index, self.level)
-            self.data.sections.pop(self.index)
+            
 
         if type(dest) == int:
-
+            self.data.sections.pop(self.index)
             self.data.sections.insert(dest, self.name)
             self.data.levels.insert(dest, self.level)
-            self.data.sections.pop(self.index)
+            
 
         else:
             raise ValueError("Destination must be either an integer or a dataHolder object")
@@ -220,15 +221,27 @@ class dataHolder:
         except:
             self.data.levels[self.index] = level
 
+        
+
         if not makeParent:
             ind = self.index
+            lvl = self.level-1
             found = False
             while (not found):
-                ind -= 1
-                if self.data.levels[ind] == level -1:
-                    found = True
+                try:
+                    ind -= 1
+                    if self.data.levels[ind] == lvl:
+
+                        found = True
+                except:
+                    raise ValueError("No parent section found")
             #cvoudl do the getchidlren over all of the sections in the stoic file, btu cowukl dbe havilty inefficent (coukld check indexes or idneces)
             self.moveSubsection(ind, stoicObj)
+            
+            self.level = level
+            self.data.levels[self.index] = lvl
+             
+                
 
 
             
@@ -458,3 +471,7 @@ try:
 except:
     print('this was a test, ensured error')
     #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
+
+kt.getSubsection('langs').getSubsection('rust').getSubsection('type').changeLevel(1, kt, True)
+
+kt.printOut()

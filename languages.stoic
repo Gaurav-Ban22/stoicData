@@ -1,5 +1,4 @@
 langs: 
     rust: 
-        usage: 2000000000
-        type: static
+    type: static
         mostUsedOn: servers
