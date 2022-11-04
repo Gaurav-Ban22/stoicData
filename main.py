@@ -189,8 +189,9 @@ class dataHolder:
 
     def swapLocations(self, dest, stoicObj):
         #dest is an object of type dataHolder
-        self.data.sections[dest.index], self.data.levels[dest.index] = self.data.sections[self.index], self.data.levels[self.index]
+        y, x = self.data.sections[self.index], self.data.levels[self.index]
         self.data.sections[self.index], self.data.levels[self.index] = self.data.sections[dest.index], self.data.levels[dest.index]
+        self.data.sections[dest.index], self.data.levels[dest.index] = y, x
         #basically just resetting the values and the levels because needs to make the klvels the same
         stoicObj.reload(self.data)
 
@@ -204,7 +205,9 @@ class dataHolder:
 
         if type(dest) == int:
             self.data.sections.pop(self.index)
+            print(self.data.sections[self.index][0] + "os wjat wjere popping here")
             self.data.sections.insert(dest, self.name)
+            print(self.data.sections[dest][0] + "os wjat wjere changing here")
             self.data.levels.insert(dest, self.level)
             
 
@@ -218,8 +221,10 @@ class dataHolder:
 
         try:
             self.data.levels[self.index] = level.level
+            
         except:
             self.data.levels[self.index] = level
+                     
 
         
 
@@ -236,10 +241,12 @@ class dataHolder:
                 except:
                     raise ValueError("No parent section found")
             #cvoudl do the getchidlren over all of the sections in the stoic file, btu cowukl dbe havilty inefficent (coukld check indexes or idneces)
-            self.moveSubsection(ind, stoicObj)
-            
             self.level = level
             self.data.levels[self.index] = lvl
+            
+            self.moveSubsection(ind, stoicObj)
+            
+            
              
                 
 
@@ -472,6 +479,5 @@ except:
     print('this was a test, ensured error')
     #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
 
-kt.getSubsection('langs').getSubsection('rust').getSubsection('type').changeLevel(1, kt, True)
-
+kt.getSubsection('langs').getSubsection('rust').getSubsection('type').swapLocations(kt.getSubsection('langs').getSubsection('rust').getSubsection('mostUsedOn'), kt)
 kt.printOut()

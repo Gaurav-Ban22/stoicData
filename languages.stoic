@@ -1,4 +1,4 @@
 langs: 
     rust: 
-    type: static
         mostUsedOn: servers
+        type: static
