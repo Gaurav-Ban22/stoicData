@@ -1,4 +1,5 @@
 langs: 
+                type: static
     rust: 
         mostUsedOn: servers
-        type: static
+        amongus: sus

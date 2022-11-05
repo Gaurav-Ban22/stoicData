@@ -173,6 +173,7 @@ class dataHolder:
                                 break
                                 #coudxl otpimzie much mroe witha  boolean and then a breakage func lithe one belpow this toi codde4
                         #coudld oelif but dont need to cin yhis python ciode
+                        ##checks if different obj or nonchiodl has been reached by checking if the level si differenta lso fireship is copopl
                         
 
                     
@@ -205,9 +206,9 @@ class dataHolder:
 
         if type(dest) == int:
             self.data.sections.pop(self.index)
-            print(self.data.sections[self.index][0] + "os wjat wjere popping here")
+          
             self.data.sections.insert(dest, self.name)
-            print(self.data.sections[dest][0] + "os wjat wjere changing here")
+           
             self.data.levels.insert(dest, self.level)
             
 
@@ -230,12 +231,14 @@ class dataHolder:
 
         if not makeParent:
             ind = self.index
+            name = ""
             lvl = self.level-1
             found = False
             while (not found):
                 try:
                     ind -= 1
                     if self.data.levels[ind] == lvl:
+                        name = self.data.sections[ind][0]
 
                         found = True
                 except:
@@ -245,13 +248,24 @@ class dataHolder:
             self.data.levels[self.index] = lvl
             
             self.moveSubsection(ind, stoicObj)
+            self.data.levels[ind+2] += 1
+
+            
+
+            # for i in self.returnSubsections(name):
+            #     self.data.levels[i[1]] = lvl+1
+            #wont work if changing formatting iwll come bnack to later
+                #changes all of the chikld susbections levels to the base level they were at earlier., thje sel;f.level-1 +1 or self.level before it was changed
+
+
+
             
             
              
                 
 
 
-            
+        
         stoicObj.reload(self.data)
 
         
@@ -479,5 +493,5 @@ except:
     print('this was a test, ensured error')
     #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
 
-kt.getSubsection('langs').getSubsection('rust').getSubsection('type').swapLocations(kt.getSubsection('langs').getSubsection('rust').getSubsection('mostUsedOn'), kt)
+kt.getSubsection('langs').getSubsection('rust').getSubsection('type').changeLevel(4, kt, False)
 kt.printOut()
