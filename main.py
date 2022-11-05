@@ -248,7 +248,7 @@ class dataHolder:
             self.data.levels[self.index] = lvl
             
             self.moveSubsection(ind, stoicObj)
-            self.data.levels[ind+2] += 1
+            # self.data.levels[ind+2] += 1
 
             
 
