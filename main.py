@@ -213,23 +213,22 @@ class dataHolder:
                 try:
                     if i == "/" and d == 0:
                         prevObj = stoicObj.getBase(vals[i+1])
-                    match i:
-                        case "/":
-                            prevObj = prevObj.getSubsection(vals[i+1])
-                        case ".":
-                            return prevObj.getValue()
-                        case "=":
-                            prevObj.setValue(vals[i+1])
-                            return
-                        case "-":
-                            prevObj.deleteSubsection(vals[i+1])
-                            return
-                        case "+":
-                            prevObj.insertSubsection(vals[i+1])
-                            #works, was gonna write since adding subseciton bel,ow given obnj, writing getsubseciton at first so that it sets value, but doesn treally amte rsince 1 char a timte
-                            return
-                        case "*":
-                            return prevObj.getSubsections()
+                    elif i == "/":
+                        prevObj = prevObj.getSubsection(vals[i+1])
+                    elif i == ".":
+                        return prevObj.getValue()
+                    elif i == "=":
+                        prevObj.setValue(vals[i+1])
+                        return
+                    elif i == "-":
+                        prevObj.deleteSubsection(vals[i+1])
+                        return
+                    elif i == "+":
+                        prevObj.insertSubsection(vals[i+1])
+                        #works, was gonna write since adding subseciton bel,ow given obnj, writing getsubseciton at first so that it sets value, but doesn treally amte rsince 1 char a timte
+                        return
+                    elif i == "*":
+                        return prevObj.getSubsections()
                 except:
                     raise ValueError(f"Invalid syntax of shorthand: {i} at index {d} in {value}")
 
