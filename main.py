@@ -220,6 +220,36 @@ class dataHolder:
     
     def changeLevel(self, level, stoicObj, makeParent = True):
 
+        found = False
+        ido = self.index
+        dataToHold = []
+        while (not found):
+            try:
+                
+                if self.data.levels[ido] < ido:
+                    #subsection of parent
+                    found = True
+                ido -= 1
+            except:
+                raise ValueError("No parent section found")
+
+        print(f"found parent at {ido}")
+
+        for index, val in enumerate(self.data.sections):
+            if index > ido:
+                if self.data.levels[index] >= self.data.levels[ido]:
+                    #if the level is greater than or equal to the parent section, then it means that it has to be a different section parent; eno amatter how deep the secitons are
+                    dataToHold.append((val, self.data.levels[index]))
+                else:
+                    break
+                    
+
+
+
+            #could add restrictor with getusbsections (then length) but dont need to ,jsut mgiht be slow on large files
+
+        
+
         try:
             self.data.levels[self.index] = level.level
             
@@ -248,7 +278,35 @@ class dataHolder:
             self.data.levels[self.index] = lvl
             
             self.moveSubsection(ind, stoicObj)
+
+            for index, val in enumerate(dataToHold):
+                if val[0] == self.name[0]:
+                    dataToHold.pop(index)
+
+            x = 0
+            for index, val in enumerate(self.data.sections):
+                if index > ido:
+                    if self.data.levels[index] >= self.data.levels[ido]:
+                        #if the level is greater than or equal to the parent section, then it means that it has to be a different section parent; eno amatter how deep the secitons are
+                        print(dataToHold)
+                        print(x)
+                        self.data.levels[index] = dataToHold[x][1]
+                        x += 1
+                    else:
+                        break
+
+                        
+                        
+
+
+
             # self.data.levels[ind+2] += 1
+            
+            
+
+
+                
+                    #could use the index of the parent section to do this, but this is easier
 
             
 
@@ -493,5 +551,11 @@ except:
     print('this was a test, ensured error')
     #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
 
-kt.getSubsection('langs').getSubsection('rust').getSubsection('type').changeLevel(4, kt, False)
+kt.getSubsection('langs').getSubsection('rust').getSubsection('amongus').changeLevel(4, kt, False)
 kt.printOut()
+
+#my code hath cmpile and i commite dnadpusehd to github
+
+#levenshtein distance algo
+#regex that finds all the words between colons in a string
+#code regex that finds all the words between colons in a string
