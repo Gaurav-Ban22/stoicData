@@ -23,6 +23,11 @@ class lookerUpper:
 
     #for loopings sake
 
+class token:
+    def __init__(self, token):
+        self.token = token
+
+
 
 class dataHolder:
     def __init__(self, name, data, index, level=0):
@@ -195,6 +200,46 @@ class dataHolder:
         self.data.sections[dest.index], self.data.levels[dest.index] = y, x
         #basically just resetting the values and the levels because needs to make the klvels the same
         stoicObj.reload(self.data)
+
+    def sEval(self, value, stoicObj):
+        vals = value.split(" ")
+        tok = []
+        if len(vals) == 1:
+            raise ValueError("Cannot process a single value")
+        else:
+            for d, i in enumerate(vals):
+                prevObj = None
+                #could use regex but lexing instead lmao wait i dont even need to lex
+                try:
+                    if i == "/" and d == 0:
+                        prevObj = stoicObj.getBase(vals[i+1])
+                    elif i == "/":
+                        prevObj = prevObj.getSubsection(vals[i+1])
+                    elif i == ".":
+                        return prevObj.getValue()
+                    elif i == "=":
+                        prevObj.setValue(vals[i+1])
+                        return
+                    elif i == "-":
+                        prevObj.deleteSubsection(vals[i+1])
+                        return
+                        elif i == "+":
+                        prevObj.insertSubsection(vals[i+1])
+                        #works, was gonna write since adding subseciton bel,ow given obnj, writing getsubseciton at first so that it sets value, but doesn treally amte rsince 1 char a timte
+                        return
+                    elif i == "*":
+                        return prevObj.getSubsections()
+                except:
+                    raise ValueError(f"Invalid syntax of shorthand: {i} at index {d} in {value}")
+
+                    
+                        
+                        
+                        
+
+
+
+
 
     def moveSubsection(self, dest, stoicObj):
         
