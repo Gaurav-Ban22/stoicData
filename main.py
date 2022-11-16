@@ -429,7 +429,7 @@ class stoicFile:
                         prevObj.deleteSubsection(vals[d+1])
                         return
                     elif i == "+":
-                        prevObj.insertSubsection(vals[d+1])
+                        prevObj.insertSubsection(vals[d+1], vals[d+2], self)
                         #works, was gonna write since adding subseciton bel,ow given obnj, writing getsubseciton at first so that it sets value, but doesn treally amte rsince 1 char a timte
                         return
                     elif i == "*":
@@ -603,8 +603,7 @@ try:
 except:
     print('this was a test, ensured error')
     #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
-amog = kt.sEval("/ langs / rust / type .")
-print("amog is: " + amog)
+amog = kt.sEval("/ langs / rust / type + garbagecollec none")
 kt.getSubsection('langs').getSubsection('rust').getSubsection('amongus').changeLevel(4, kt, False)
 kt.printOut()
 
