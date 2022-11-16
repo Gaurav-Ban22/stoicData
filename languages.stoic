@@ -1,5 +1,5 @@
-langs: 
-                amongus: sus
+langs:              
     rust: 
         type: static
         mostUsedOn: servers
+        amongus: sus
