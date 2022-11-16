@@ -80,7 +80,7 @@ class dataHolder:
                         try:
                             final = str(final)
                         except:
-                            raise ValueError("Value is not a valid type")
+                            raise ValueError("Value is not a valid type of types int, tuple, bool, float, list, or str")
         #inedfficient but works
         return final
 
@@ -434,6 +434,18 @@ class stoicFile:
                         return
                     elif i == "*":
                         return prevObj.getSubsections()
+                    elif i == "^":
+                        prevObj.moveSubsection(vals[d+1])
+                        return
+                        #basically moving it to the pos of the next specified index, cant be section ebcause is string not dataHolder
+                    elif i == "&":
+                        prevObj.changeLevel(vals[d+1], self, True)
+                        #move it out of parent section
+                        return
+                    elif i == "%":
+                        prevObj.changeLevel(vals[d+1], self, False)
+                        #keep in the relative vicinity of the parent section but not a susbeciton depending onw hat level. might still be so keep in viinity OR POSSIBLE PISTIOJN IN subsection 
+                        return
                 except:
                     raise ValueError(f"Invalid syntax of shorthand: {i} at index {d} in {value}")
 
