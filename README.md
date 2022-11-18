@@ -51,11 +51,12 @@ from stoic import stoicFile
 langs = stoicFile("languages.stoic")
 print(langs.getSubsection("languages").getSubsection("python").getValue("typing"))
 ```
-or
+or, obviously
 ```python
 from stoic import stoicFile
 langs = stoicFile("languages.stoic")
 subS = langs.getSubsection("languages").getSubsection("python")
+#obviously, since you can get the object by using the getSubsection func, and then set it to a variable
 print(subS.getValue("typing"))
 ```
 
