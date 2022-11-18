@@ -3,6 +3,7 @@ languages:
         js: interpreted
         python: interpreted
     static: 
+        cpp: compiled
         nim: compiled
         java: compiled
         c: compiled

@@ -51,6 +51,13 @@ from stoic import stoicFile
 langs = stoicFile("languages.stoic")
 print(langs.getSubsection("languages").getSubsection("python").getValue("typing"))
 ```
+or
+```python
+from stoic import stoicFile
+langs = stoicFile("languages.stoic")
+subS = langs.getSubsection("languages").getSubsection("python")
+print(subS.getValue("typing"))
+```
 
 This would print "dynamic" to the console, or whatever you wrote in the field.
 If this seems like a lot, you can use the shorthand syntax, which is noy only a bit more intuitive but also quicker and easier to use. The shorthand syntax and more is explained in the documentation, which you can find here.

@@ -616,6 +616,7 @@ kt.printOut()
 langs = stoicFile("langstoic.stoic")
 
 langs.sEval("/ languages / static + nim compiled")
+langs.sEval("/ languages / static + cpp compiled")
 #my code hath cmpile and i commite dnadpusehd to github
 
 #levenshtein distance algo
