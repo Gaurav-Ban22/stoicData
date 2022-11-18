@@ -227,16 +227,17 @@ class dataHolder:
         stoicObj.reload(self.data)
     
     def changeLevel(self, level, stoicObj, makeParent = True):
-
         found = False
         ido = self.index
         dataToHold = []
         while (not found):
             try:
-                
+
+
                 if self.data.levels[ido] < self.level:
                     #subsection of parent
                     found = True
+                    break
                 ido -= 1
             except:
                 raise ValueError("No parent section found")
@@ -245,18 +246,19 @@ class dataHolder:
 
         for index, val in enumerate(self.data.sections):
             if index > ido:
-                if self.data.levels[index] >= self.data.levels[ido]:
-                    #if the level is greater than or equal to the parent section, then it means that it has to be a different section parent; eno amatter how deep the secitons are
+                if self.data.levels[index] > self.data.levels[ido]:
+                    #if the level is greater than or equal to the parent section, then it means that it has to be a child section 
                     dataToHold.append((val, self.data.levels[index]))
                 else:
                     break
-                    
+
 
 
 
             #could add restrictor with getusbsections (then length) but dont need to ,jsut mgiht be slow on large files
 
-        
+
+
 
         try:
             self.data.levels[self.index] = level.level
@@ -281,6 +283,7 @@ class dataHolder:
                         found = True
                 except:
                     raise ValueError("No parent section found")
+                    #cudl hjuse use ido, this is old code
             #cvoudl do the getchidlren over all of the sections in the stoic file, btu cowukl dbe havilty inefficent (coukld check indexes or idneces)
             self.level = level
             self.data.levels[self.index] = lvl
@@ -292,6 +295,8 @@ class dataHolder:
                     dataToHold.pop(index)
 
             x = 0
+            ido += 1
+            #account for replacement of thing to before parent
             for index, val in enumerate(self.data.sections):
                 if index > ido:
                     if self.data.levels[index] >= self.data.levels[ido]:
