@@ -4,10 +4,10 @@ A lightweight, data-saving library that provides an easy and simple way for pyth
 
 Stoic is characterized by having an object oriented, intuitive, and simple to use access-syntax, and by classifying data by tabs instead of braces.
 
-- **📚 Installation**
+## **📚 Installation**
 
 Stoic is not in pyPi, so you cannot download it by pip. Instead, download the main.py file and the package.
 
-- **📖 Docs**
+## **📖 Docs**
 
-Click Here
+<a href="./mycodecompiled.md">Click here</a>
