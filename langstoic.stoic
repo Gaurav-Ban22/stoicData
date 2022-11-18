@@ -1,0 +1,7 @@
+languages: 
+    dynamic: 
+        js: interpreted
+        python: interpreted
+    static: 
+        java: compiled
+        c: compiled

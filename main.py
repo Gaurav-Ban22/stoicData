@@ -299,6 +299,7 @@ class dataHolder:
             #account for replacement of thing to before parent
             for index, val in enumerate(self.data.sections):
                 if index > ido:
+                    
                     if self.data.levels[index] >= self.data.levels[ido]:
                         #if the level is greater than or equal to the parent section, then it means that it has to be a different section parent; eno amatter how deep the secitons are
                         print(dataToHold)
@@ -431,7 +432,7 @@ class stoicFile:
                         prevObj.setValue(vals[d+1])
                         return
                     elif i == "-":
-                        prevObj.deleteSubsection(vals[d+1])
+                        prevObj.deleteSubsection(vals[d+1], self)
                         return
                     elif i == "+":
                         prevObj.insertSubsection(vals[d+1], vals[d+2], self)
@@ -612,6 +613,9 @@ except:
 kt.getSubsection('langs').getSubsection('rust').getSubsection('type').changeLevel(4, kt, False)
 kt.printOut()
 
+langs = stoicFile("langstoic.stoic")
+
+langs.sEval("/ languages / static - nim")
 #my code hath cmpile and i commite dnadpusehd to github
 
 #levenshtein distance algo
