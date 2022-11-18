@@ -56,7 +56,7 @@ or, obviously
 from stoic import stoicFile
 langs = stoicFile("languages.stoic")
 subS = langs.getSubsection("languages").getSubsection("python")
-#obviously, since you can get the object by using the getSubsection func, and then set it to a variable
+#obviously, since you can get the object by using the getSubsection func, and then set it to a variable, and then use that variable to get set aor fethc vlaues
 print(subS.getValue("typing"))
 ```
 
