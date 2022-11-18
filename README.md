@@ -6,8 +6,10 @@ Stoic is characterized by having an object oriented, intuitive, and simple to us
 
 ## **📚 Installation**
 
-Stoic is not in pyPi, so you cannot download it by pip. Instead, download the main.py file and the package.
+Stoic is not in pyPi, so you cannot download it by pip. Instead, download the main.py file and the package and import into your project
 
 ## **📖 Docs**
 
-<a href="./mycodecompiled.md">Click here</a>
+Stoic has two ways of documentation: 
+- A [wiki]()
+- A command line interface for the docs.
