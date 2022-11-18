@@ -1,6 +1,5 @@
 langs: 
     rust: 
         type: static
-            garbagecollec: none
         mostUsedOn: servers
         amongus: sus

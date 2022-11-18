@@ -234,7 +234,7 @@ class dataHolder:
         while (not found):
             try:
                 
-                if self.data.levels[ido] < ido:
+                if self.data.levels[ido] < self.level:
                     #subsection of parent
                     found = True
                 ido -= 1
@@ -603,8 +603,8 @@ try:
 except:
     print('this was a test, ensured error')
     #gott amake iot import rthe file and then dynuiamcally load a class as a scgheme - this is unrelated to this try catch but mprotant to overall
-amog = kt.sEval("/ langs / rust / type + garbagecollec none")
-kt.getSubsection('langs').getSubsection('rust').getSubsection('amongus').changeLevel(4, kt, False)
+# amog = kt.sEval("/ langs / rust / type + garbagecollec none")
+kt.getSubsection('langs').getSubsection('rust').getSubsection('type').changeLevel(4, kt, False)
 kt.printOut()
 
 #my code hath cmpile and i commite dnadpusehd to github
